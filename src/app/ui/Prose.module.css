@@ -1,0 +1,42 @@
+.prose {
+  max-width: var(--measure-reading);
+  color: var(--color-ink-secondary);
+  font-family: var(--font-reading);
+  font-size: var(--type-body);
+  line-height: var(--leading-reading);
+}
+
+.prose p {
+  margin: 0 0 1em;
+  text-wrap: pretty;
+}
+
+.prose p:last-child {
+  margin-bottom: 0;
+}
+
+.prose a {
+  color: var(--color-accent);
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+.prose a:hover {
+  color: var(--color-accent-hover);
+}
+
+.prose ul,
+.prose ol {
+  margin: 0 0 1em;
+  padding-left: 1.25em;
+}
+
+.prose li {
+  margin-bottom: 0.35em;
+}
+
+.prose strong {
+  color: var(--color-ink);
+  font-weight: var(--weight-semibold);
+}

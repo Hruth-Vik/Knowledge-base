@@ -1,0 +1,227 @@
+.figure {
+  margin: 0;
+}
+
+.canvasWrap {
+  overflow-x: auto;
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-xs);
+  background:
+    linear-gradient(180deg, var(--color-bg-raised), transparent 60%),
+    var(--color-bg-sunken);
+}
+
+.canvasWrap:focus-visible {
+  outline-offset: -3px;
+}
+
+.canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: var(--space-3);
+}
+
+.canvas > g {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: diagram-pop 480ms var(--ease-spring) both;
+}
+
+.canvas > g:nth-child(2) {
+  animation-delay: 40ms;
+}
+
+.canvas > g:nth-child(3) {
+  animation-delay: 80ms;
+}
+
+.canvas > g:nth-child(4) {
+  animation-delay: 120ms;
+}
+
+.canvas > g:nth-child(5) {
+  animation-delay: 160ms;
+}
+
+.canvas > g:nth-child(6) {
+  animation-delay: 200ms;
+}
+
+.canvas > g:nth-child(7) {
+  animation-delay: 240ms;
+}
+
+.canvas > g:nth-child(8) {
+  animation-delay: 280ms;
+}
+
+.canvas > g:nth-child(n + 9) {
+  animation-delay: 320ms;
+}
+
+.edgeLine {
+  stroke: var(--diagram-rule);
+  stroke-width: var(--diagram-stroke);
+  fill: none;
+}
+
+.edgeDepends .edgeLine {
+  stroke-dasharray: 4 4;
+  animation: diagram-dash 3.8s linear infinite;
+}
+
+.edgeContrast .edgeLine {
+  stroke: var(--diagram-warning);
+  stroke-dasharray: 2 4;
+  animation: diagram-dash 3.2s linear infinite reverse;
+}
+
+.arrowHead {
+  fill: var(--diagram-rule);
+}
+
+.edgeLabel {
+  fill: var(--diagram-muted);
+  font-family: var(--font-code);
+  font-size: 0.64rem;
+  letter-spacing: 0.01em;
+  paint-order: stroke;
+  stroke: var(--color-bg-sunken);
+  stroke-width: 4px;
+}
+
+.nodeBody {
+  fill: var(--node-fill);
+  stroke: var(--node-line);
+  stroke-width: 1.4;
+}
+
+.nodeDetail {
+  fill: none;
+  stroke: var(--node-line);
+  stroke-width: 1;
+  opacity: 0.55;
+}
+
+.nodeText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  overflow: hidden;
+  color: var(--node-ink);
+  text-align: left;
+}
+
+.nodeLabel {
+  font-family: var(--font-ui);
+  font-size: var(--diagram-label-size);
+  font-weight: var(--weight-semibold);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.nodeDetailText {
+  margin-top: 0.3rem;
+  color: var(--node-muted);
+  font-family: var(--font-code);
+  font-size: 0.68rem;
+  line-height: 1.35;
+  overflow-wrap: break-word;
+}
+
+.annotation {
+  fill: var(--diagram-muted);
+  font-family: var(--font-code);
+  font-size: var(--diagram-annotation-size);
+  line-height: 1.4;
+}
+
+.caption {
+  max-width: var(--measure-reading);
+  margin-top: var(--space-3);
+  color: var(--color-ink-muted);
+  font-family: var(--font-ui);
+  font-size: var(--type-sm);
+  line-height: 1.55;
+}
+
+.scrollHint {
+  display: block;
+  margin: var(--space-2) 0 0;
+  color: var(--color-ink-muted);
+  font-family: var(--font-code);
+  font-size: var(--type-2xs);
+  letter-spacing: 0.02em;
+}
+
+.caption::before {
+  margin-right: var(--space-2);
+  color: var(--color-ink-muted);
+  content: "Fig.";
+  font-family: var(--font-code);
+  font-size: var(--type-2xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.toneNeutral {
+  --node-fill: var(--diagram-fill);
+  --node-line: var(--diagram-rule);
+  --node-ink: var(--diagram-ink);
+  --node-muted: var(--diagram-muted);
+}
+
+.toneAccent {
+  --node-fill: var(--diagram-accent-wash);
+  --node-line: var(--diagram-accent);
+  --node-ink: var(--diagram-ink);
+  --node-muted: var(--color-accent);
+}
+
+.toneMuted {
+  --node-fill: var(--color-bg-sunken);
+  --node-line: var(--color-rule);
+  --node-ink: var(--color-ink-secondary);
+  --node-muted: var(--color-ink-muted);
+}
+
+.toneCorrect {
+  --node-fill: var(--color-correct-wash);
+  --node-line: var(--diagram-correct);
+  --node-ink: var(--diagram-ink);
+  --node-muted: var(--color-correct);
+}
+
+.toneWarning {
+  --node-fill: var(--color-decaying-wash);
+  --node-line: var(--diagram-warning);
+  --node-ink: var(--diagram-ink);
+  --node-muted: var(--color-decaying);
+}
+
+@keyframes diagram-pop {
+  from {
+    opacity: 0;
+    transform: translateY(5px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes diagram-dash {
+  to {
+    stroke-dashoffset: -16;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .canvas > g,
+  .edgeDepends .edgeLine,
+  .edgeContrast .edgeLine {
+    animation: none;
+  }
+}

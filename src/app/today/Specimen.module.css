@@ -1,0 +1,467 @@
+.wrap {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.stage {
+  position: relative;
+  isolation: isolate;
+  min-height: 22rem;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  border-radius: calc(var(--radius-tile) - 4px);
+  background:
+    radial-gradient(
+      70% 64% at 50% 46%,
+      color-mix(in srgb, var(--tone-teal-wash) 52%, transparent),
+      transparent 72%
+    ),
+    radial-gradient(
+      46% 40% at 82% 16%,
+      color-mix(in srgb, var(--tone-rust-wash) 48%, transparent),
+      transparent 70%
+    ),
+    color-mix(in srgb, var(--color-bg-sunken) 46%, transparent);
+  box-shadow:
+    0 1px 0 var(--glass-highlight) inset,
+    0 24px 60px -48px rgb(30 20 8 / 0.62);
+}
+
+.stage::before {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    color-mix(in srgb, var(--color-ink) 10%, transparent) 1px,
+    transparent 0
+  );
+  background-size: 19px 19px;
+  content: "";
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.scan {
+  position: absolute;
+  z-index: 1;
+  top: -30%;
+  right: 0;
+  left: 0;
+  height: 34%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in srgb, var(--tone-teal) 8%, transparent) 46%,
+    color-mix(in srgb, var(--tone-teal) 16%, transparent) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  animation: specimen-scan 11s var(--ease-standard) infinite;
+}
+
+.reticle {
+  position: absolute;
+  z-index: 0;
+  inset: 7%;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    from 0deg,
+    color-mix(in srgb, var(--color-ink) 16%, transparent) 0deg 0.5deg,
+    transparent 0.5deg 6deg
+  );
+  opacity: 0.32;
+  mask-image: radial-gradient(circle, transparent 0 76%, black 76.4% 100%);
+  pointer-events: none;
+  animation: specimen-reticle-spin 72s linear infinite;
+}
+
+.ring {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  border: 1px dashed color-mix(in srgb, var(--color-ink) 16%, transparent);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.ringOuter {
+  width: 74%;
+  aspect-ratio: 1;
+  animation: specimen-spin 54s linear infinite reverse;
+}
+
+.ringInner {
+  width: 47%;
+  aspect-ratio: 1;
+  border-color: color-mix(in srgb, var(--color-ink) 12%, transparent);
+}
+
+.crosshairX,
+.crosshairY {
+  position: absolute;
+  z-index: 0;
+  background: color-mix(in srgb, var(--color-ink) 8%, transparent);
+  pointer-events: none;
+}
+
+.crosshairX {
+  top: 50%;
+  right: 6%;
+  left: 6%;
+  height: 1px;
+}
+
+.crosshairY {
+  top: 6%;
+  bottom: 6%;
+  left: 50%;
+  width: 1px;
+}
+
+.orbit {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+}
+
+.bonds {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.bond {
+  stroke: color-mix(in srgb, var(--color-ink) 32%, transparent);
+  stroke-width: 1;
+  opacity: 0.48;
+  vector-effect: non-scaling-stroke;
+  transition:
+    stroke var(--motion-base) var(--ease-standard),
+    opacity var(--motion-base) var(--ease-standard),
+    stroke-width var(--motion-base) var(--ease-standard);
+}
+
+.bond[data-dashed="true"] {
+  stroke-dasharray: 2 4;
+  opacity: 0.28;
+}
+
+.bond[data-active="true"] {
+  stroke: var(--color-accent);
+  stroke-width: 1.6;
+  opacity: 0.92;
+}
+
+.core {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.18rem;
+  width: 9.5rem;
+  aspect-ratio: 1;
+  padding: 1.1rem;
+  border: 1px solid color-mix(in srgb, var(--color-ink) 16%, transparent);
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      80% 70% at 50% 24%,
+      color-mix(in srgb, var(--color-bg-raised) 86%, transparent),
+      transparent 80%
+    ),
+    color-mix(in srgb, var(--color-bg-raised) 84%, transparent);
+  box-shadow:
+    0 1px 0 var(--glass-highlight) inset,
+    0 18px 34px -28px rgb(30 20 8 / 0.7);
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.core::after {
+  position: absolute;
+  inset: -1px;
+  border: 1px solid color-mix(in srgb, var(--tone-teal) 22%, transparent);
+  border-radius: 50%;
+  content: "";
+  opacity: 0;
+  animation: specimen-core-pulse 4.6s var(--ease-standard) infinite;
+}
+
+.coreCode {
+  color: var(--color-accent);
+  font-family: var(--font-label);
+  font-size: 1.45rem;
+  font-weight: var(--weight-medium);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.coreLabel {
+  display: -webkit-box;
+  overflow: hidden;
+  max-width: 100%;
+  color: var(--color-ink);
+  font-family: var(--font-heading);
+  font-size: 0.73rem;
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  text-wrap: balance;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.coreMeta {
+  color: var(--color-ink-muted);
+  font-family: var(--font-label);
+  font-size: 0.47rem;
+  letter-spacing: 0.07em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.node {
+  --node-tone: var(--tone-teal);
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.32rem;
+  max-width: 9rem;
+  padding: 0.2rem;
+  border: 0;
+  background: transparent;
+  color: var(--color-ink);
+  cursor: pointer;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.node[data-tone="teal"] {
+  --node-tone: var(--tone-teal);
+}
+
+.node[data-tone="ochre"] {
+  --node-tone: var(--tone-ochre);
+}
+
+.node[data-tone="indigo"] {
+  --node-tone: var(--tone-indigo);
+}
+
+.node[data-tone="oxide"] {
+  --node-tone: var(--tone-oxide);
+}
+
+.nodeDot {
+  position: relative;
+  width: 0.56rem;
+  height: 0.56rem;
+  flex: 0 0 auto;
+  border: 1px solid var(--color-bg-raised);
+  border-radius: 50%;
+  background: var(--node-tone);
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--node-tone) 16%, transparent),
+    0 0 18px color-mix(in srgb, var(--node-tone) 44%, transparent);
+  transition:
+    transform var(--motion-base) var(--ease-spring),
+    box-shadow var(--motion-base) var(--ease-standard);
+}
+
+.node:hover .nodeDot,
+.node:focus-visible .nodeDot,
+.node[data-active="true"] .nodeDot {
+  transform: scale(1.35);
+  box-shadow:
+    0 0 0 5px color-mix(in srgb, var(--node-tone) 20%, transparent),
+    0 0 24px color-mix(in srgb, var(--node-tone) 60%, transparent);
+}
+
+.nodeLabel {
+  padding: 0.24rem 0.4rem;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--color-bg-raised) 88%, transparent);
+  color: var(--color-ink-secondary);
+  font-family: var(--font-ui);
+  font-size: 0.63rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: -0.005em;
+  line-height: 1.16;
+  text-wrap: balance;
+  transition:
+    color var(--motion-fast) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard),
+    background-color var(--motion-fast) var(--ease-standard);
+}
+
+.node:hover .nodeLabel,
+.node:focus-visible .nodeLabel,
+.node[data-active="true"] .nodeLabel {
+  border-color: color-mix(in srgb, var(--node-tone) 42%, transparent);
+  background: var(--glass-bg-strong);
+  color: var(--color-ink);
+}
+
+.node:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 4px;
+}
+
+.legend {
+  position: absolute;
+  z-index: 2;
+  right: 0.85rem;
+  bottom: 0.7rem;
+  left: 0.85rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.9rem;
+  color: var(--color-ink-muted);
+  font-family: var(--font-label);
+  font-size: 0.47rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32rem;
+}
+
+.solidLine,
+.dashedLine {
+  display: inline-block;
+  width: 1.1rem;
+  height: 0;
+  border-top: 1px solid color-mix(in srgb, var(--color-ink) 44%, transparent);
+}
+
+.dashedLine {
+  border-top-style: dashed;
+  opacity: 0.64;
+}
+
+.readout {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  min-height: 2.2rem;
+  margin: 0;
+  color: var(--color-ink-secondary);
+  font-family: var(--font-reading);
+  font-size: 0.84rem;
+  line-height: 1.4;
+  text-wrap: pretty;
+}
+
+.readoutMark {
+  width: 0.36rem;
+  height: 0.36rem;
+  flex: 0 0 auto;
+  margin-top: 0.36rem;
+  background: var(--color-accent);
+}
+
+@keyframes specimen-spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes specimen-reticle-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes specimen-scan {
+  0%,
+  18% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  26% {
+    opacity: 1;
+  }
+  62% {
+    opacity: 0.8;
+  }
+  78%,
+  100% {
+    transform: translateY(390%);
+    opacity: 0;
+  }
+}
+
+@keyframes specimen-core-pulse {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  44% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+}
+
+@media (max-width: 720px) {
+  .stage {
+    min-height: 19rem;
+  }
+
+  .core {
+    width: 7.6rem;
+  }
+
+  .coreCode {
+    font-size: 1.15rem;
+  }
+
+  .coreLabel {
+    font-size: 0.64rem;
+  }
+
+  .node {
+    max-width: 8.2rem;
+  }
+
+  .nodeLabel {
+    font-size: 0.62rem;
+  }
+
+  .legend {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scan,
+  .reticle,
+  .ringOuter,
+  .core::after {
+    animation: none;
+  }
+
+  .scan {
+    opacity: 0;
+  }
+}

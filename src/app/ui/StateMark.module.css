@@ -1,0 +1,73 @@
+.mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0.42rem;
+  border: 1px solid color-mix(in srgb, currentColor 42%, transparent);
+  border-radius: var(--radius-xs);
+  background: transparent;
+  color: var(--color-ink-muted);
+  font-family: var(--font-label);
+  font-size: 0.625rem;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.07em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.symbol {
+  width: 0.38rem;
+  height: 0.38rem;
+  border: 1px solid currentColor;
+  background: transparent;
+}
+
+.neutral {
+  color: var(--color-ink-muted);
+}
+
+.progress {
+  color: var(--tone-teal);
+}
+
+.progress .symbol {
+  border-color: currentColor;
+  background: currentColor;
+}
+
+.done {
+  color: var(--tone-ochre);
+}
+
+.done .symbol {
+  border-color: currentColor;
+  background: currentColor;
+}
+
+.mastered {
+  color: var(--tone-moss);
+}
+
+.mastered .symbol {
+  border-color: currentColor;
+  background: currentColor;
+  box-shadow: 2px 2px 0 color-mix(in srgb, currentColor 30%, transparent);
+}
+
+.due {
+  color: var(--tone-rust);
+}
+
+.due .symbol {
+  border-color: currentColor;
+  background: currentColor;
+}
+
+.rest {
+  color: var(--color-ink-muted);
+}
+
+.rest .symbol {
+  border-style: dashed;
+}

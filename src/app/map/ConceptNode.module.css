@@ -1,0 +1,297 @@
+.node {
+  --node-tone: var(--tone-indigo);
+  --node-wash: var(--tone-indigo-wash);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 6.75rem;
+  padding: 0.62rem 0.75rem 0.58rem;
+  overflow: hidden;
+  border: 1.5px solid color-mix(in srgb, var(--node-tone) 42%, var(--color-rule));
+  border-radius: var(--radius-md);
+  background:
+    linear-gradient(150deg, transparent 46%, color-mix(in srgb, var(--node-wash) 74%, transparent)),
+    var(--color-bg-raised);
+  color: var(--color-ink);
+  box-shadow:
+    3px 3px 0 color-mix(in srgb, var(--color-ink) 8%, transparent),
+    var(--shadow-card);
+  transition:
+    transform var(--motion-fast) var(--ease-spring),
+    border-color var(--motion-fast) var(--ease-standard),
+    box-shadow var(--motion-fast) var(--ease-standard),
+    opacity var(--motion-fast) var(--ease-standard);
+}
+
+.node::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 4px;
+  background: var(--node-tone);
+  content: "";
+}
+
+.node[data-tone="rust"] {
+  --node-tone: var(--tone-rust);
+  --node-wash: var(--tone-rust-wash);
+}
+
+.node[data-tone="ochre"] {
+  --node-tone: var(--tone-ochre);
+  --node-wash: var(--tone-ochre-wash);
+}
+
+.node[data-tone="teal"] {
+  --node-tone: var(--tone-teal);
+  --node-wash: var(--tone-teal-wash);
+}
+
+.node[data-tone="moss"] {
+  --node-tone: var(--tone-moss);
+  --node-wash: var(--tone-moss-wash);
+}
+
+.node[data-tone="oxide"] {
+  --node-tone: var(--tone-oxide);
+  --node-wash: var(--tone-oxide-wash);
+}
+
+.node[data-tone="plum"] {
+  --node-tone: var(--tone-plum);
+  --node-wash: var(--tone-plum-wash);
+}
+
+.node[data-tone="indigo"] {
+  --node-tone: var(--tone-indigo);
+  --node-wash: var(--tone-indigo-wash);
+}
+
+.node[data-tone="sun"] {
+  --node-tone: var(--tone-sun);
+  --node-wash: var(--tone-sun-wash);
+}
+
+.node[data-tone="sky"] {
+  --node-tone: var(--tone-sky);
+  --node-wash: var(--tone-sky-wash);
+}
+
+.node[data-tone="rose"] {
+  --node-tone: var(--tone-rose);
+  --node-wash: var(--tone-rose-wash);
+}
+
+.node:hover {
+  border-color: var(--node-tone);
+}
+
+.node[data-selected="true"] {
+  border: 2px solid var(--color-ink);
+  box-shadow:
+    5px 5px 0 color-mix(in srgb, var(--node-tone) 38%, transparent),
+    var(--shadow-lift);
+}
+
+.node[data-status="unseen"] {
+  border-style: dashed;
+  opacity: 0.68;
+}
+
+.node[data-status="learned"] {
+  border-color: color-mix(in srgb, var(--node-tone) 62%, var(--color-rule));
+}
+
+.node[data-status="decaying"] {
+  border: 2px solid var(--tone-ochre);
+  animation: node-fade 3.4s ease-in-out infinite;
+}
+
+.node[data-status="mastered"] {
+  border-color: var(--node-tone);
+  background:
+    linear-gradient(150deg, transparent 30%, color-mix(in srgb, var(--node-wash) 92%, transparent)),
+    var(--color-bg-raised);
+}
+
+.node[data-dimmed="true"] {
+  opacity: 0.22;
+  filter: saturate(0.35);
+}
+
+.node[data-matched="true"] {
+  outline: 2px solid var(--tone-sun);
+  outline-offset: 3px;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: 0.32rem;
+  min-width: 0;
+}
+
+.level {
+  padding: 0.06rem 0.34rem;
+  border: 1px solid var(--node-tone);
+  border-radius: var(--radius-round);
+  background: color-mix(in srgb, var(--node-wash) 64%, transparent);
+  color: var(--node-tone);
+  font-family: var(--font-mono);
+  font-size: 0.54rem;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.kind {
+  overflow: hidden;
+  color: var(--color-ink-muted);
+  font-family: var(--font-ui);
+  font-size: 0.52rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.055em;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.notes {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.12rem;
+  margin-left: auto;
+  padding: 0.05rem 0.28rem;
+  border: 1px solid color-mix(in srgb, var(--tone-rose) 45%, transparent);
+  border-radius: var(--radius-round);
+  color: var(--tone-rose);
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+}
+
+.notes svg {
+  width: 0.62rem;
+  height: 0.62rem;
+}
+
+.title {
+  display: -webkit-box;
+  margin: 0.3rem 0 0.35rem;
+  overflow: hidden;
+  color: var(--color-ink);
+  font-family: var(--font-heading);
+  font-size: 0.86rem;
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  margin-top: auto;
+  color: var(--color-ink-muted);
+  font-family: var(--font-ui);
+  font-size: 0.52rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.24rem;
+}
+
+.dot {
+  width: 0.38rem;
+  height: 0.38rem;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+}
+
+.node[data-status="learned"] .status {
+  color: var(--node-tone);
+}
+
+.node[data-status="learned"] .dot {
+  background: currentColor;
+}
+
+.node[data-status="mastered"] .status {
+  color: var(--tone-moss);
+}
+
+.node[data-status="mastered"] .dot {
+  background: currentColor;
+  box-shadow: 0 0 0 2px color-mix(in srgb, currentColor 20%, transparent);
+}
+
+.node[data-status="decaying"] .status {
+  color: var(--tone-ochre);
+}
+
+.node[data-status="decaying"] .dot {
+  background: currentColor;
+}
+
+.links {
+  flex: 0 0 auto;
+  font-family: var(--font-mono);
+  font-size: 0.48rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.selectedMark {
+  position: absolute;
+  top: 0.36rem;
+  right: 0.36rem;
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 50%;
+  background: var(--tone-sun);
+  opacity: 0;
+}
+
+.node[data-selected="true"] .selectedMark {
+  opacity: 1;
+}
+
+.handle {
+  width: 1px;
+  min-width: 1px;
+  height: 1px;
+  min-height: 1px;
+  border: 0;
+  background: transparent;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes node-fade {
+  0%,
+  100% {
+    box-shadow:
+      3px 3px 0 color-mix(in srgb, var(--color-ink) 8%, transparent),
+      0 0 0 0 color-mix(in srgb, var(--tone-ochre) 26%, transparent);
+  }
+  50% {
+    box-shadow:
+      3px 3px 0 color-mix(in srgb, var(--color-ink) 8%, transparent),
+      0 0 0 5px color-mix(in srgb, var(--tone-ochre) 12%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .node[data-status="decaying"] {
+    animation: none;
+  }
+}

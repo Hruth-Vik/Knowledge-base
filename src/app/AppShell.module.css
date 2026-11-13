@@ -1,0 +1,588 @@
+.shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.skipLink {
+  position: fixed;
+  z-index: var(--z-command);
+  top: var(--space-2);
+  left: var(--space-4);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-ink);
+  border-radius: var(--radius-xs);
+  background: var(--color-bg-raised);
+  color: var(--color-ink);
+  font-family: var(--font-ui);
+  font-size: var(--type-sm);
+  font-weight: var(--weight-semibold);
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.skipLink:focus {
+  transform: translateY(0);
+}
+
+.header {
+  position: sticky;
+  z-index: var(--z-header);
+  top: 0;
+  border-block-end: 1px solid var(--glass-border-strong);
+  background: color-mix(in srgb, var(--color-bg) 86%, transparent);
+  backdrop-filter: blur(16px) saturate(1.12);
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .header {
+    background: var(--color-bg);
+  }
+}
+
+.headerInner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  width: 100%;
+  max-width: var(--wide-max);
+  min-height: var(--header-height);
+  margin-inline: auto;
+  padding-inline: var(--page-gutter);
+}
+
+.brand {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.brandTile {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--color-ink);
+  border-radius: var(--radius-xs);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  transition: transform var(--motion-fast) var(--ease-standard);
+}
+
+.brand:hover .brandTile {
+  transform: rotate(-3deg);
+}
+
+.brandMark {
+  width: 1rem;
+  height: 1rem;
+}
+
+.brandWords {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.brandName {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: var(--weight-heavy);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.brandVersion {
+  color: var(--color-ink-muted);
+  font-family: var(--font-label);
+  font-size: 0.55rem;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.nav {
+  display: flex;
+  align-items: stretch;
+  align-self: stretch;
+  gap: clamp(0.75rem, 1.5vw, 1.4rem);
+  margin-left: clamp(0.5rem, 2vw, 1.75rem);
+}
+
+.navLink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--color-ink-muted);
+  font-family: var(--font-ui);
+  font-size: var(--type-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  transition: color var(--motion-fast) var(--ease-standard);
+}
+
+.navLink::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--color-accent);
+  content: "";
+  opacity: 0;
+  transform: scaleX(0.4);
+  transition:
+    opacity var(--motion-fast) var(--ease-standard),
+    transform var(--motion-fast) var(--ease-standard);
+}
+
+.navLink:hover {
+  color: var(--color-ink);
+}
+
+.navLink[aria-current="page"] {
+  color: var(--color-ink);
+}
+
+.navLink[aria-current="page"]::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.navIndex {
+  color: var(--color-ink-muted);
+  font-family: var(--font-label);
+  font-size: 0.58rem;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.02em;
+}
+
+.navLink[aria-current="page"] .navIndex {
+  color: var(--color-accent);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-left: auto;
+}
+
+.momentum {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.2rem 0.7rem 0.2rem 0.2rem;
+  border-inline-end: 1px solid var(--color-rule);
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.momentum:hover .momentumText strong {
+  color: var(--color-accent);
+}
+
+.momentumRing {
+  --ring-size: 2rem;
+}
+
+.momentumText {
+  display: grid;
+  gap: 0.08rem;
+  padding-right: 0.65rem;
+  line-height: 1.05;
+}
+
+.momentumText strong {
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  transition: color var(--motion-fast) var(--ease-standard);
+}
+
+.momentumText span {
+  color: var(--color-ink-muted);
+  font-family: var(--font-label);
+  font-size: 0.55rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.searchButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.25rem;
+  padding: 0 0.6rem;
+  border: 1px solid var(--color-rule-strong);
+  border-radius: var(--radius-xs);
+  background: var(--color-bg-raised);
+  color: var(--color-ink-muted);
+  cursor: pointer;
+  transition:
+    border-color var(--motion-fast) var(--ease-standard),
+    color var(--motion-fast) var(--ease-standard);
+}
+
+.searchButton:hover {
+  border-color: var(--color-ink);
+  color: var(--color-ink);
+}
+
+.searchLabel {
+  font-family: var(--font-ui);
+  font-size: var(--type-xs);
+  font-weight: var(--weight-medium);
+}
+
+.searchKey {
+  padding: 0.08rem 0.24rem;
+  border: 1px solid var(--color-rule);
+  border-radius: 2px;
+  color: var(--color-ink-muted);
+  font-family: var(--font-label);
+  font-size: 0.55rem;
+  line-height: 1.4;
+}
+
+.iconButton {
+  display: inline-grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-xs);
+  background: transparent;
+  color: var(--color-ink-muted);
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    border-color var(--motion-fast) var(--ease-standard),
+    background-color var(--motion-fast) var(--ease-standard),
+    color var(--motion-fast) var(--ease-standard);
+}
+
+.iconButton:hover,
+.iconButton[aria-current="page"] {
+  border-color: var(--color-rule-strong);
+  background: var(--color-bg-raised);
+  color: var(--color-ink);
+}
+
+.controlIcon {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+.main {
+  flex: 1;
+  width: 100%;
+}
+
+.main:focus {
+  outline: none;
+}
+
+/*
+ * A short entrance, never an exit. Navigation must not wait for the old page
+ * to leave. The animation uses only opacity and transform, and the whole stage
+ * is keyed by pathname in AppShell so a new route restarts it immediately.
+ */
+.routeStage {
+  animation: route-enter 160ms var(--ease-standard) both;
+  transform-origin: 50% 0;
+}
+
+@keyframes route-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.routeLoading {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding: var(--space-10) var(--page-gutter);
+  color: var(--color-ink-muted);
+  font-family: var(--font-label);
+  font-size: var(--type-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.loadingSpark {
+  width: 0.6rem;
+  height: 0.6rem;
+  background: var(--color-accent);
+  animation: pulse-soft 1.6s ease-in-out infinite;
+}
+
+.recovery {
+  border-block-end: 1px solid var(--color-incorrect);
+  background: var(--color-incorrect-wash);
+}
+
+.recoveryInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  width: 100%;
+  max-width: var(--wide-max);
+  margin-inline: auto;
+  padding: var(--space-4) var(--page-gutter);
+}
+
+.recoveryTitle {
+  margin: 0 0 var(--space-1);
+  color: var(--color-incorrect);
+  font-family: var(--font-ui);
+  font-size: var(--type-sm);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.01em;
+}
+
+.recoveryText {
+  max-width: 68ch;
+  margin: 0;
+  color: var(--color-ink-secondary);
+  font-family: var(--font-ui);
+  font-size: var(--type-sm);
+  line-height: 1.55;
+}
+
+.recoveryActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.footer {
+  border-block-start: 1px solid var(--color-ink);
+  background: var(--color-bg-raised);
+}
+
+.footerInner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-6);
+  width: 100%;
+  max-width: var(--wide-max);
+  margin-inline: auto;
+  padding: var(--space-6) var(--page-gutter);
+  color: var(--color-ink-muted);
+  font-family: var(--font-label);
+  font-size: 0.65rem;
+  letter-spacing: 0.03em;
+  line-height: 1.7;
+  text-transform: uppercase;
+}
+
+.footerInner p {
+  margin: 0;
+}
+
+.footerBrand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-ink-secondary);
+  font-family: var(--font-ui);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.01em;
+}
+
+.footerMark {
+  width: 0.85rem;
+  height: 0.85rem;
+}
+
+.footerVersion {
+  color: var(--color-ink-muted);
+  font-family: var(--font-label);
+  font-size: 0.6rem;
+  letter-spacing: 0.02em;
+}
+
+.storageWarning {
+  flex-basis: 100%;
+  color: var(--color-decaying);
+}
+
+.bottomNav {
+  display: none;
+}
+
+@media (max-width: 1180px) {
+  .momentumText {
+    display: none;
+  }
+
+  .momentum {
+    padding-inline-end: 0.5rem;
+  }
+}
+
+@media (max-width: 1020px) {
+  .searchLabel,
+  .searchKey {
+    display: none;
+  }
+
+  .searchButton {
+    width: 2.25rem;
+    padding: 0;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 900px) {
+  /*
+   * Fixed chrome is the worst place for a live backdrop blur: every scroll
+   * frame re-samples the page behind it. On phones the vellum reads the same
+   * with a near-opaque fill, so trade the blur for stable frames.
+   */
+  .header {
+    background: color-mix(in srgb, var(--color-bg) 97%, transparent);
+    backdrop-filter: none;
+  }
+
+  .headerInner {
+    min-height: 3.75rem;
+    gap: var(--space-2);
+  }
+
+  .brandVersion {
+    display: none;
+  }
+
+  .brandTile {
+    width: 1.85rem;
+    height: 1.85rem;
+  }
+
+  .nav,
+  .momentum {
+    display: none;
+  }
+
+  .controls {
+    gap: 0.1rem;
+  }
+
+  .bottomNav {
+    position: fixed;
+    z-index: var(--z-header);
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    padding: 0.3rem 0.3rem calc(0.3rem + env(safe-area-inset-bottom));
+    border-block-start: 1px solid var(--glass-border-strong);
+    background: color-mix(in srgb, var(--color-bg-raised) 97%, transparent);
+    backdrop-filter: none;
+  }
+
+  .bottomLink {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    gap: 0.2rem;
+    padding: 0.35rem 0.1rem 0.2rem;
+    color: var(--color-ink-muted);
+    font-family: var(--font-ui);
+    font-size: 0.6rem;
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.01em;
+    text-decoration: none;
+  }
+
+  .bottomLink::before {
+    position: absolute;
+    top: -0.3rem;
+    right: 20%;
+    left: 20%;
+    height: 2px;
+    background: var(--color-accent);
+    content: "";
+    opacity: 0;
+  }
+
+  .bottomIcon {
+    display: grid;
+    place-items: center;
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+
+  .bottomIcon svg {
+    width: 1.05rem;
+    height: 1.05rem;
+  }
+
+  .bottomLink[aria-current="page"] {
+    color: var(--color-ink);
+  }
+
+  .bottomLink[aria-current="page"]::before {
+    opacity: 1;
+  }
+
+  .footerInner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-bottom: calc(var(--bottom-nav-height) + var(--space-5));
+  }
+}
+
+@media (max-width: 520px) {
+  .brandName {
+    font-size: 0.82rem;
+  }
+
+  .iconButton {
+    width: 2.1rem;
+    height: 2.1rem;
+  }
+
+  .searchButton {
+    width: 2.1rem;
+    min-height: 2.1rem;
+  }
+
+  .footerInner {
+    gap: var(--space-1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .routeStage {
+    animation: none;
+  }
+
+  .brand:hover .brandTile {
+    transform: none;
+  }
+
+  .loadingSpark {
+    animation: none;
+  }
+}

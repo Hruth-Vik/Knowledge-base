@@ -1,0 +1,15 @@
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.in {
+  animation: rise-in var(--motion-slow) var(--ease-standard) var(--reveal-delay, 0ms)
+    both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .in {
+    animation: none;
+  }
+}

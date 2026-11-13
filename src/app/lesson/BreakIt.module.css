@@ -1,0 +1,121 @@
+.wrap {
+  max-width: 58rem;
+}
+
+.title {
+  margin: 0 0 var(--space-3);
+  color: var(--color-ink);
+  font-family: var(--font-reading);
+  font-size: var(--type-h2);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-tight);
+  text-wrap: balance;
+}
+
+.wrap > :global(figure) {
+  margin-top: var(--space-4);
+}
+
+.prediction {
+  margin-top: var(--space-5);
+  padding: var(--space-5);
+  border: 1px solid var(--color-incorrect);
+  border-left-width: 4px;
+  background: color-mix(in srgb, var(--color-incorrect-wash) 62%, var(--color-bg-raised));
+}
+
+.predictionPrompt {
+  color: var(--color-ink);
+  font-family: var(--font-ui);
+  font-size: var(--type-body);
+  font-weight: var(--weight-medium);
+  line-height: 1.5;
+}
+
+.inputLabel {
+  display: block;
+  margin: var(--space-4) 0 var(--space-2);
+  color: var(--color-ink);
+  font-family: var(--font-ui);
+  font-size: var(--type-sm);
+  font-weight: var(--weight-medium);
+}
+
+.inputLabel span {
+  color: var(--color-ink-muted);
+  font-family: var(--font-code);
+  font-size: var(--type-2xs);
+  font-weight: var(--weight-regular);
+}
+
+.textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid var(--color-rule-strong);
+  border-radius: var(--radius-xs);
+  background: var(--color-bg-raised);
+  color: var(--color-ink);
+  font-family: var(--font-ui);
+  font-size: var(--type-sm);
+  line-height: 1.55;
+  resize: vertical;
+}
+
+.reveal {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  animation: break-reveal 460ms var(--ease-spring) both;
+}
+
+.revealLabel,
+.repairLabel {
+  margin: 0;
+  color: var(--color-incorrect-strong);
+  font-family: var(--font-code);
+  font-size: var(--type-2xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+
+.repair {
+  margin-top: var(--space-2);
+  padding: var(--space-4);
+  border-left: 3px solid var(--color-correct);
+  background: var(--color-correct-wash);
+}
+
+.repairLabel {
+  color: var(--color-correct-strong);
+}
+
+.reveal :global(figure) {
+  margin-top: var(--space-2);
+}
+
+@media (max-width: 720px) {
+  .prediction {
+    padding: var(--space-4);
+  }
+}
+
+@keyframes break-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    animation: none;
+  }
+}

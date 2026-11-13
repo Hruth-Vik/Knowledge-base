@@ -1,0 +1,53 @@
+{
+  "name": "foundation",
+  "version": "0.6.0",
+  "private": true,
+  "type": "module",
+  "description": "A local-first, developer-first learning platform about how software actually works.",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "predev": "npm run generate:code",
+    "prebuild": "npm run validate:content && npm run generate:code",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "precheck": "npm run generate:code",
+    "check": "npm run typecheck && npm run test && npm run validate:content",
+    "pretypecheck": "npm run generate:code",
+    "typecheck": "tsc --noEmit",
+    "generate:code": "tsx scripts/build-lesson-assets.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "validate:content": "tsx scripts/validate-content.ts"
+  },
+  "dependencies": {
+    "@fontsource-variable/archivo": "^5.3.0",
+    "@fontsource-variable/bricolage-grotesque": "^5.3.0",
+    "@fontsource-variable/newsreader": "^5.3.0",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@xyflow/react": "^12.12.1",
+    "idb-keyval": "^6.2.2",
+    "minisearch": "^7.2.0",
+    "motion": "^14.13.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-markdown": "^10.1.0",
+    "react-router-dom": "^7.18.5",
+    "remark-gfm": "^4.0.1",
+    "shiki": "^4.6.0",
+    "zod": "^4.6.7",
+    "zustand": "^5.0.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.0",
+    "@types/react": "^18.3.27",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^5.2.0",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.8",
+    "vitest": "^5.1.0"
+  }
+}

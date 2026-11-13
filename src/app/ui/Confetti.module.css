@@ -1,0 +1,37 @@
+.field {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.shard {
+  position: absolute;
+  top: -12px;
+  left: var(--left);
+  width: 0.5rem;
+  height: 0.9rem;
+  border-radius: 2px;
+  background: var(--shard-tone, var(--color-accent));
+  opacity: 0;
+  animation: confetti-fall var(--duration) var(--ease-exit) var(--delay) forwards;
+}
+
+.round {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+}
+
+@keyframes confetti-fall {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--drift), 420px, 0) rotate(var(--rotate));
+  }
+}

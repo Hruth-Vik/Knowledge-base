@@ -1,0 +1,450 @@
+.asideLabel {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: var(--color-accent);
+  font-family: var(--font-ui);
+  font-size: var(--type-2xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+
+.asideBig {
+  display: block;
+  color: var(--color-ink);
+  font-family: var(--font-heading);
+  font-size: 2.4rem;
+  font-weight: var(--weight-heavy);
+  letter-spacing: var(--tracking-tight);
+  line-height: 1;
+}
+
+.introRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-5);
+  margin-bottom: var(--space-5);
+}
+
+.intro {
+  max-width: 58ch;
+  margin: 0;
+  color: var(--color-ink-secondary);
+  font-family: var(--font-reading);
+  font-size: var(--type-body);
+  line-height: 1.55;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.7rem;
+  margin: 0;
+  color: var(--color-ink-muted);
+  font-size: var(--type-2xs);
+  white-space: nowrap;
+}
+
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+}
+
+.legendDot {
+  display: inline-block;
+  width: 0.55rem;
+  height: 0.55rem;
+  border: 1.5px solid var(--color-ink-muted);
+  border-radius: 50%;
+}
+
+.legendDot[data-state="progress"] {
+  border-color: var(--tone-teal);
+  background: color-mix(in srgb, var(--tone-teal) 22%, transparent);
+}
+
+.legendDot[data-state="mastered"] {
+  border-color: var(--tone-moss);
+  background: var(--tone-moss);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.levelItem {
+  display: block;
+  min-width: 0;
+}
+
+.levelCard {
+  --level-tone: var(--tone-ochre);
+  --level-wash: var(--tone-ochre-wash);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 19rem;
+  overflow: hidden;
+  padding: var(--space-5);
+  border: 1.5px solid color-mix(in srgb, var(--color-ink) 16%, transparent);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(18rem 12rem at 100% 0%, var(--level-wash), transparent 64%),
+    var(--color-bg-raised);
+  color: var(--color-ink);
+  text-decoration: none;
+  box-shadow: var(--shadow-card);
+  transition:
+    transform var(--motion-fast) var(--ease-spring),
+    border-color var(--motion-fast) var(--ease-standard),
+    box-shadow var(--motion-fast) var(--ease-standard);
+}
+
+.levelCard[data-tone="rose"] {
+  --level-tone: var(--tone-rose);
+  --level-wash: var(--tone-rose-wash);
+}
+
+.levelCard[data-tone="ochre"] {
+  --level-tone: var(--tone-ochre);
+  --level-wash: var(--tone-ochre-wash);
+}
+
+.levelCard[data-tone="teal"] {
+  --level-tone: var(--tone-teal);
+  --level-wash: var(--tone-teal-wash);
+}
+
+.levelCard[data-tone="indigo"] {
+  --level-tone: var(--tone-indigo);
+  --level-wash: var(--tone-indigo-wash);
+}
+
+.levelCard[data-tone="plum"] {
+  --level-tone: var(--tone-plum);
+  --level-wash: var(--tone-plum-wash);
+}
+
+.levelCard[data-tone="moss"] {
+  --level-tone: var(--tone-moss);
+  --level-wash: var(--tone-moss-wash);
+}
+
+.levelCard[data-tone="oxide"] {
+  --level-tone: var(--tone-oxide);
+  --level-wash: var(--tone-oxide-wash);
+}
+
+.levelCard[data-tone="sky"] {
+  --level-tone: var(--tone-sky);
+  --level-wash: var(--tone-sky-wash);
+}
+
+.levelCard[data-tone="sun"] {
+  --level-tone: var(--tone-sun);
+  --level-wash: var(--tone-sun-wash);
+}
+
+.levelCard:hover {
+  transform: translateY(-4px) rotate(-0.3deg);
+  border-color: var(--level-tone);
+  box-shadow: var(--shadow-lift);
+}
+
+.levelCard[data-recommended="true"] {
+  border: 2px solid var(--color-ink);
+  box-shadow:
+    var(--shadow-lift),
+    6px 6px 0 color-mix(in srgb, var(--level-tone) 30%, transparent);
+}
+
+.watermark {
+  position: absolute;
+  right: 0.7rem;
+  bottom: -0.6rem;
+  color: var(--level-tone);
+  font-family: var(--font-heading);
+  font-size: 8rem;
+  font-weight: var(--weight-heavy);
+  letter-spacing: -0.08em;
+  line-height: 0.8;
+  opacity: 0.09;
+  pointer-events: none;
+}
+
+.levelTop {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.levelBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.22rem 0.55rem;
+  border: 1.5px solid var(--level-tone);
+  border-radius: var(--radius-round);
+  background: color-mix(in srgb, var(--level-wash) 60%, transparent);
+  color: var(--level-tone);
+  font-family: var(--font-mono);
+  font-size: var(--type-2xs);
+  font-weight: var(--weight-medium);
+}
+
+.levelBadge span {
+  font-size: 0.55rem;
+  opacity: 0.7;
+}
+
+.levelTitle {
+  position: relative;
+  z-index: 1;
+  max-width: 17ch;
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1.35rem, 1.15rem + 0.8vw, 1.7rem);
+  font-weight: var(--weight-heavy);
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.04;
+  text-wrap: balance;
+}
+
+.levelDeck {
+  position: relative;
+  z-index: 1;
+  max-width: 34ch;
+  margin: var(--space-2) 0 var(--space-4);
+  color: var(--color-ink-muted);
+  font-family: var(--font-reading);
+  font-size: var(--type-sm);
+  line-height: 1.45;
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.8rem;
+  margin-top: auto;
+  color: var(--color-ink-muted);
+  font-size: var(--type-2xs);
+  font-weight: var(--weight-medium);
+}
+
+.metaRow span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.metaRow svg {
+  width: 0.8rem;
+  height: 0.8rem;
+  color: var(--level-tone);
+}
+
+.rail {
+  position: relative;
+  display: block;
+  height: 0.45rem;
+  overflow: hidden;
+  margin-top: var(--space-2);
+  border-radius: var(--radius-round);
+  background: color-mix(in srgb, var(--color-ink) 9%, transparent);
+}
+
+.railTouched,
+.railMastered {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+}
+
+.railTouched {
+  background: color-mix(in srgb, var(--level-tone) 30%, transparent);
+}
+
+.railMastered {
+  background: var(--level-tone);
+  transition: width var(--motion-slow) var(--ease-standard);
+}
+
+.cardFooter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.cardCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--level-tone);
+  font-size: var(--type-xs);
+  font-weight: var(--weight-bold);
+}
+
+.cardCta svg {
+  width: 0.9rem;
+  height: 0.9rem;
+  transition: transform var(--motion-fast) var(--ease-spring);
+}
+
+.levelCard:hover .cardCta svg {
+  transform: translateX(3px);
+}
+
+.cardCount {
+  color: var(--color-ink-muted);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+}
+
+.ribbon {
+  position: absolute;
+  top: 1rem;
+  right: -2.2rem;
+  z-index: 2;
+  width: 9rem;
+  padding: 0.2rem 0;
+  background: var(--color-ink);
+  color: var(--color-bg-raised);
+  font-family: var(--font-ui);
+  font-size: 0.58rem;
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-wide);
+  text-align: center;
+  text-transform: uppercase;
+  transform: rotate(35deg);
+}
+
+.note {
+  max-width: 72ch;
+  margin: var(--space-5) 0 0;
+  color: var(--color-ink-muted);
+  font-family: var(--font-reading);
+  font-size: var(--type-sm);
+  line-height: 1.55;
+}
+
+.packs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pack {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1.5px dashed var(--color-rule-strong);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-bg-sunken) 52%, transparent);
+}
+
+.packGlyph {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 2.7rem;
+  height: 2.7rem;
+  border: 1.5px solid var(--tone-plum);
+  border-radius: 50%;
+  background: var(--tone-plum-wash);
+  color: var(--tone-plum);
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: var(--weight-heavy);
+}
+
+.packBody {
+  min-width: 0;
+}
+
+.packTopline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.packTitle {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: var(--type-h4);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+}
+
+.packTitle a {
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.packTitle a:hover {
+  color: var(--tone-plum);
+}
+
+.packDeck {
+  margin: var(--space-1) 0 0;
+  color: var(--color-ink-muted);
+  font-family: var(--font-reading);
+  font-size: var(--type-sm);
+  line-height: 1.45;
+}
+
+@media (max-width: 860px) {
+  .introRow {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .packs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .levelCard {
+    min-height: 17rem;
+  }
+
+  .watermark {
+    font-size: 6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .levelCard:hover {
+    transform: none;
+  }
+
+  .levelCard:hover .cardCta svg {
+    transform: none;
+  }
+}

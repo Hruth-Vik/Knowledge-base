@@ -1,0 +1,130 @@
+.peek {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid color-mix(in srgb, var(--color-ink) 34%, transparent);
+  border-radius: 13px;
+  background: var(--color-code-bg);
+  color: var(--color-code-ink);
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 0.08) inset,
+    0 24px 52px -34px rgb(0 0 0 / 0.74);
+}
+
+.peek::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--color-accent) 64%, transparent),
+    transparent
+  );
+  content: "";
+  opacity: 0.72;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 0.5rem 0.7rem;
+  border-bottom: 1px solid var(--color-code-line);
+  background: color-mix(in srgb, var(--color-code-bg) 80%, var(--color-bg-raised));
+  color: var(--color-code-muted);
+  font-family: var(--font-label);
+  font-size: 0.5rem;
+  letter-spacing: 0.04em;
+}
+
+.filename {
+  overflow: hidden;
+  color: var(--color-code-ink);
+  font-size: 0.54rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.language {
+  text-transform: uppercase;
+}
+
+.pre {
+  overflow: auto;
+  margin: 0;
+  padding: 0.6rem 0.7rem 0.7rem;
+  font-family: var(--font-code);
+  font-size: 0.58rem;
+  line-height: 1.72;
+  tab-size: 2;
+}
+
+.line {
+  display: flex;
+  gap: 0.7rem;
+  min-width: max-content;
+}
+
+.lineNumber {
+  flex: 0 0 1.15rem;
+  color: var(--color-code-muted);
+  font-variant-numeric: tabular-nums;
+  opacity: 0.55;
+  text-align: right;
+  user-select: none;
+}
+
+.lineCode {
+  white-space: pre;
+}
+
+.token {
+  color: var(--token-light);
+}
+
+.italic {
+  font-style: italic;
+}
+
+.bold {
+  font-weight: var(--weight-semibold);
+}
+
+.underline {
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
+}
+
+.more {
+  color: var(--color-code-muted);
+  font-style: italic;
+}
+
+:global([data-theme="dark"]) .token {
+  color: var(--token-dark);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .peek {
+    animation: peek-breathe 7s ease-in-out infinite;
+  }
+}
+
+@keyframes peek-breathe {
+  0%,
+  100% {
+    box-shadow:
+      0 1px 0 rgb(255 255 255 / 0.08) inset,
+      0 24px 52px -34px rgb(0 0 0 / 0.74);
+  }
+  50% {
+    box-shadow:
+      0 1px 0 rgb(255 255 255 / 0.1) inset,
+      0 30px 62px -34px
+        color-mix(in srgb, var(--color-accent) 40%, rgb(0 0 0 / 0.6));
+  }
+}

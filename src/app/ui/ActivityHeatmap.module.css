@@ -1,0 +1,87 @@
+.figure {
+  margin: 0;
+}
+
+.grid {
+  --cell: 0.66rem;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(12, var(--cell));
+  grid-template-rows: repeat(7, var(--cell));
+  gap: 3px;
+  width: max-content;
+  max-width: 100%;
+}
+
+.cell {
+  width: var(--cell);
+  height: var(--cell);
+  background: var(--color-bg);
+  border: 1px solid var(--color-rule);
+}
+
+.level0 {
+  background: var(--color-bg);
+  border-color: var(--color-rule);
+}
+
+.level1 {
+  background: var(--color-accent-wash);
+  border-color: var(--color-accent-wash);
+}
+
+.level2 {
+  background: color-mix(in srgb, var(--color-accent) 42%, var(--color-bg));
+  border-color: transparent;
+}
+
+.level3 {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.rest {
+  border-color: var(--color-rule-strong);
+  border-radius: var(--radius-round);
+}
+
+.caption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: var(--space-3) var(--space-5);
+  margin-top: var(--space-3);
+  color: var(--color-ink-muted);
+  font-family: var(--font-mono);
+  font-size: var(--type-2xs);
+  line-height: 1.5;
+}
+
+.legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  white-space: nowrap;
+}
+
+.key {
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 1px solid var(--color-rule);
+}
+
+.restKey {
+  border-color: var(--color-rule-strong);
+  border-radius: var(--radius-round);
+}
+
+@media (max-width: 520px) {
+  .grid {
+    --cell: 0.58rem;
+    gap: 2px;
+  }
+
+  .legend {
+    display: none;
+  }
+}

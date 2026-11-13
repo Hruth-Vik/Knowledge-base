@@ -1,0 +1,478 @@
+/*
+ * FOUNDATION design tokens
+ *
+ * Visual language: a working field ledger. Paper sheets, iron-gall ink, one
+ * rust action color, specimen inks used as data rather than decoration. Rules
+ * and number columns carry structure; elevation is rare and always physical.
+ *
+ * All component styling must consume these variables. Feature code must not
+ * introduce raw hex values, arbitrary radii, or generic shadows.
+ */
+
+:root {
+  color-scheme: light;
+
+  /* ----------------------------------------------------------------------- */
+  /* Type                                                                    */
+  /* ----------------------------------------------------------------------- */
+
+  --font-serif: "Newsreader Variable", "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-sans: "Archivo Variable", "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Archivo Variable", "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+
+  --font-reading: var(--font-serif);
+  --font-ui: var(--font-sans);
+  --font-heading: var(--font-display);
+  --font-label: var(--font-mono);
+  --font-code: var(--font-mono);
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-heavy: 800;
+
+  --type-2xs: 0.6875rem;
+  --type-xs: 0.75rem;
+  --type-sm: 0.875rem;
+  --type-ui: 0.9375rem;
+  --type-body: 1.0625rem;
+  --type-body-lg: 1.1875rem;
+  --type-h4: clamp(1.125rem, 1.02rem + 0.35vw, 1.3rem);
+  --type-h3: clamp(1.35rem, 1.16rem + 0.6vw, 1.65rem);
+  --type-h2: clamp(1.7rem, 1.38rem + 1.05vw, 2.3rem);
+  --type-h1: clamp(2.25rem, 1.72rem + 2.1vw, 3.4rem);
+  --type-display: clamp(2.9rem, 2.1rem + 3.7vw, 5.25rem);
+
+  --leading-none: 1;
+  --leading-tight: 1.04;
+  --leading-snug: 1.22;
+  --leading-normal: 1.5;
+  --leading-reading: 1.68;
+
+  --tracking-tight: -0.035em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.06em;
+  --tracking-caps: 0.13em;
+
+  --measure-reading: 68ch;
+  --measure-narrow: 56ch;
+  --measure-note: 38ch;
+
+  /* ----------------------------------------------------------------------- */
+  /* Space and layout                                                        */
+  /* ----------------------------------------------------------------------- */
+
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 2.5rem;
+  --space-8: 3rem;
+  --space-9: 4rem;
+  --space-10: 5rem;
+  --space-11: 6rem;
+  --space-12: 8rem;
+
+  --page-gutter: clamp(1rem, 0.3rem + 3vw, 3.5rem);
+  --content-max: 78rem;
+  --reading-max: 46rem;
+  --wide-max: 94rem;
+  --margin-note-width: 17rem;
+
+  --header-height: 4rem;
+  --sidebar-width: 16.5rem;
+  --sidebar-collapsed-width: 4.25rem;
+  --bottom-nav-height: 3.75rem;
+
+  /* ----------------------------------------------------------------------- */
+  /* Shape, line, elevation                                                  */
+  /* ----------------------------------------------------------------------- */
+
+  --radius-0: 0;
+  --radius-xs: 2px;
+  --radius-sm: 3px;
+  --radius-md: 5px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-tile: 18px;
+  --radius-tile-lg: 26px;
+  --radius-round: 999px;
+
+  --border-hairline: 1px;
+  --border-focus: 2px;
+  --focus-offset: 3px;
+
+  --shadow-none: none;
+  --shadow-overlay: 0 1.5rem 4rem rgb(25 24 19 / 0.24);
+  --shadow-press: inset 0 1px 0 rgb(25 24 19 / 0.14);
+  --shadow-card: 0 1px 0 rgb(255 255 255 / 0.45) inset;
+  --shadow-lift: 0 24px 44px -34px rgb(51 38 18 / 0.4);
+  --shadow-sticker: 4px 4px 0 var(--color-ink);
+  --shadow-sticker-soft: 4px 4px 0 color-mix(in srgb, var(--color-ink) 12%, transparent);
+
+  /* Glass is vellum over the workbench: milky in daylight, smoked at night. */
+  --glass-bg: color-mix(in srgb, var(--color-bg-raised) 66%, transparent);
+  --glass-bg-strong: color-mix(in srgb, var(--color-bg-raised) 82%, transparent);
+  --glass-bg-soft: color-mix(in srgb, var(--color-bg-raised) 42%, transparent);
+  --glass-border: color-mix(in srgb, var(--color-ink) 13%, transparent);
+  --glass-border-strong: color-mix(in srgb, var(--color-ink) 24%, transparent);
+  --glass-highlight: rgb(255 255 255 / 0.52);
+  --glass-shadow:
+    0 1px 0 var(--glass-highlight) inset,
+    0 28px 70px -46px rgb(40 28 12 / 0.48);
+  --glass-shadow-lift:
+    0 1px 0 var(--glass-highlight) inset,
+    0 36px 90px -46px rgb(40 28 12 / 0.58);
+  --glass-blur: 24px;
+
+  /* ----------------------------------------------------------------------- */
+  /* Motion                                                                  */
+  /* ----------------------------------------------------------------------- */
+
+  --motion-instant: 80ms;
+  --motion-fast: 150ms;
+  --motion-base: 240ms;
+  --motion-slow: 400ms;
+  --motion-map: 520ms;
+  --motion-ambient: 18s;
+
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+  --ease-map: cubic-bezier(0.22, 0.72, 0.18, 1);
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* ----------------------------------------------------------------------- */
+  /* Layers                                                                  */
+  /* ----------------------------------------------------------------------- */
+
+  --z-base: 0;
+  --z-sticky: 10;
+  --z-header: 20;
+  --z-drawer: 30;
+  --z-dropdown: 40;
+  --z-command: 50;
+  --z-toast: 60;
+
+  /* ----------------------------------------------------------------------- */
+  /* Raw light palette                                                       */
+  /* ----------------------------------------------------------------------- */
+
+  --paper-0: #f1ebde;
+  --paper-1: #fbf7ed;
+  --paper-2: #e7dfcd;
+  --paper-3: #d9cdb6;
+  --ink-0: #191813;
+  --ink-1: #45433a;
+  --ink-2: #696458;
+  --rule-0: #d3c7b1;
+  --rule-1: #998d77;
+  --rust-0: #b23b17;
+  --rust-1: #91300f;
+  --rust-2: #762406;
+  --moss-0: #2c5c3e;
+  --moss-1: #21492f;
+  --oxide-0: #9d2b24;
+  --oxide-1: #7e1f1a;
+  --ochre-0: #77530c;
+  --ochre-1: #5e4007;
+  --teal-0: #14655d;
+  --teal-1: #0e5049;
+  --plum-0: #6f3a72;
+  --plum-1: #592c5c;
+  --indigo-0: #3a4c9e;
+  --indigo-1: #2e3c7f;
+  --sun-0: #c58c13;
+  --sun-1: #a37109;
+  --sky-0: #2f6fa0;
+  --sky-1: #24577f;
+  --rose-0: #a83761;
+  --rose-1: #89294c;
+
+  --rust-wash: #f2dbd0;
+  --moss-wash: #dde8dd;
+  --oxide-wash: #f0d7d1;
+  --ochre-wash: #efe3c3;
+  --teal-wash: #d6e8e1;
+  --plum-wash: #ead9ea;
+  --indigo-wash: #dfe3f2;
+  --sun-wash: #f3e6c1;
+  --sky-wash: #d9e7f1;
+  --rose-wash: #f1dae3;
+
+  /* ----------------------------------------------------------------------- */
+  /* Semantic color — light                                                  */
+  /* ----------------------------------------------------------------------- */
+
+  --color-bg: var(--paper-0);
+  --color-bg-raised: var(--paper-1);
+  --color-bg-sunken: var(--paper-2);
+  --color-bg-strong: var(--paper-3);
+
+  --color-ink: var(--ink-0);
+  --color-ink-secondary: var(--ink-1);
+  --color-ink-muted: var(--ink-2);
+  --color-ink-inverse: var(--paper-1);
+
+  --color-rule: var(--rule-0);
+  --color-rule-strong: var(--rule-1);
+
+  --color-accent: var(--rust-0);
+  --color-accent-hover: var(--rust-1);
+  --color-accent-pressed: var(--rust-2);
+  --color-accent-wash: var(--rust-wash);
+  --color-on-accent: #fff8ee;
+
+  --color-correct: var(--moss-0);
+  --color-correct-strong: var(--moss-1);
+  --color-correct-wash: var(--moss-wash);
+  --color-incorrect: var(--oxide-0);
+  --color-incorrect-strong: var(--oxide-1);
+  --color-incorrect-wash: var(--oxide-wash);
+  --color-decaying: var(--ochre-0);
+  --color-decaying-strong: var(--ochre-1);
+  --color-decaying-wash: var(--ochre-wash);
+  --color-highlight: var(--sun-0);
+  --color-highlight-wash: var(--sun-wash);
+  --color-sky: var(--sky-0);
+  --color-sky-wash: var(--sky-wash);
+  --color-rose: var(--rose-0);
+  --color-rose-wash: var(--rose-wash);
+
+  /* Section and figure tones. Rust stays the only action color. */
+  --tone-rust: var(--rust-0);
+  --tone-rust-wash: var(--rust-wash);
+  --tone-ochre: var(--ochre-0);
+  --tone-ochre-wash: var(--ochre-wash);
+  --tone-teal: var(--teal-0);
+  --tone-teal-wash: var(--teal-wash);
+  --tone-moss: var(--moss-0);
+  --tone-moss-wash: var(--moss-wash);
+  --tone-oxide: var(--oxide-0);
+  --tone-oxide-wash: var(--oxide-wash);
+  --tone-plum: var(--plum-0);
+  --tone-plum-wash: var(--plum-wash);
+  --tone-indigo: var(--indigo-0);
+  --tone-indigo-wash: var(--indigo-wash);
+  --tone-sun: var(--sun-0);
+  --tone-sun-wash: var(--sun-wash);
+  --tone-sky: var(--sky-0);
+  --tone-sky-wash: var(--sky-wash);
+  --tone-rose: var(--rose-0);
+  --tone-rose-wash: var(--rose-wash);
+
+  --color-selection: rgb(178 59 23 / 0.2);
+  --color-focus: var(--rust-0);
+  --color-overlay: rgb(25 24 19 / 0.52);
+  --color-grain: rgb(25 24 19 / 0.028);
+
+  /* A code window is a dark instrument even on cream paper. */
+  --color-code-bg: #15130e;
+  --color-code-ink: #e9e1d0;
+  --color-code-muted: #948a76;
+  --color-code-line: #2a261c;
+
+  --page-glow-1: transparent;
+  --page-glow-2: transparent;
+  --page-glow-3: transparent;
+  --page-glow-4: transparent;
+
+  /* Flat replacements for the retired decorative gradients. */
+  --gradient-spectrum: var(--color-rule);
+  --gradient-accent: var(--color-accent);
+  --gradient-hero: var(--color-bg-raised);
+  --gradient-cool: var(--color-bg-raised);
+  --gradient-warm: var(--color-bg-raised);
+
+  /* ----------------------------------------------------------------------- */
+  /* Diagram language                                                        */
+  /* ----------------------------------------------------------------------- */
+
+  --diagram-ink: var(--ink-0);
+  --diagram-muted: var(--ink-2);
+  --diagram-rule: var(--rule-1);
+  --diagram-fill: var(--paper-1);
+  --diagram-fill-strong: var(--paper-2);
+  --diagram-accent: var(--rust-0);
+  --diagram-accent-wash: var(--rust-wash);
+  --diagram-correct: var(--moss-0);
+  --diagram-warning: var(--ochre-0);
+  --diagram-stroke: 1.4;
+  --diagram-annotation-size: 0.75rem;
+  --diagram-label-size: 0.875rem;
+
+  /* ----------------------------------------------------------------------- */
+  /* Texture                                                                 */
+  /* ----------------------------------------------------------------------- */
+
+  --texture-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E");
+  --texture-dots: radial-gradient(
+    circle at 1px 1px,
+    color-mix(in srgb, var(--color-ink) 7%, transparent) 1px,
+    transparent 0
+  );
+  --texture-ledger: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(2rem - 1px),
+    color-mix(in srgb, var(--color-ink) 4.5%, transparent) calc(2rem - 1px),
+    color-mix(in srgb, var(--color-ink) 4.5%, transparent) 2rem
+  );
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --paper-0: #14130f;
+  --paper-1: #1c1a14;
+  --paper-2: #0e0d0a;
+  --paper-3: #2a271e;
+  --ink-0: #f2ebdb;
+  --ink-1: #d5cec0;
+  --ink-2: #a8a091;
+  --rule-0: #3a362b;
+  --rule-1: #595342;
+  --rust-0: #ff9c73;
+  --rust-1: #ffb395;
+  --rust-2: #ffc9b2;
+  --moss-0: #8fd0aa;
+  --moss-1: #b2e3c5;
+  --oxide-0: #ff9d91;
+  --oxide-1: #ffbdb5;
+  --ochre-0: #e6c477;
+  --ochre-1: #f2dba2;
+  --teal-0: #6fd3c7;
+  --teal-1: #97e7de;
+  --plum-0: #d5a6d8;
+  --plum-1: #e5c3e7;
+  --indigo-0: #a4b3f5;
+  --indigo-1: #c5cffb;
+  --sun-0: #f2be4e;
+  --sun-1: #ffd783;
+  --sky-0: #8cc0e9;
+  --sky-1: #b1d7f5;
+  --rose-0: #eca0bf;
+  --rose-1: #ffc0d7;
+
+  --rust-wash: #352018;
+  --moss-wash: #18291f;
+  --oxide-wash: #331b1c;
+  --ochre-wash: #2e2716;
+  --teal-wash: #122b28;
+  --plum-wash: #2d2032;
+  --indigo-wash: #1c2340;
+  --sun-wash: #302817;
+  --sky-wash: #172737;
+  --rose-wash: #311c27;
+
+  --color-bg: var(--paper-0);
+  --color-bg-raised: var(--paper-1);
+  --color-bg-sunken: var(--paper-2);
+  --color-bg-strong: var(--paper-3);
+
+  --color-ink: var(--ink-0);
+  --color-ink-secondary: var(--ink-1);
+  --color-ink-muted: var(--ink-2);
+  --color-ink-inverse: #14130f;
+
+  --color-rule: var(--rule-0);
+  --color-rule-strong: var(--rule-1);
+
+  --color-accent: var(--rust-0);
+  --color-accent-hover: var(--rust-1);
+  --color-accent-pressed: var(--rust-2);
+  --color-accent-wash: var(--rust-wash);
+  --color-on-accent: #1c110b;
+
+  --color-correct: var(--moss-0);
+  --color-correct-strong: var(--moss-1);
+  --color-correct-wash: var(--moss-wash);
+  --color-incorrect: var(--oxide-0);
+  --color-incorrect-strong: var(--oxide-1);
+  --color-incorrect-wash: var(--oxide-wash);
+  --color-decaying: var(--ochre-0);
+  --color-decaying-strong: var(--ochre-1);
+  --color-decaying-wash: var(--ochre-wash);
+  --color-highlight: var(--sun-0);
+  --color-highlight-wash: var(--sun-wash);
+  --color-sky: var(--sky-0);
+  --color-sky-wash: var(--sky-wash);
+  --color-rose: var(--rose-0);
+  --color-rose-wash: var(--rose-wash);
+
+  --tone-rust: var(--rust-0);
+  --tone-rust-wash: var(--rust-wash);
+  --tone-ochre: var(--ochre-0);
+  --tone-ochre-wash: var(--ochre-wash);
+  --tone-teal: var(--teal-0);
+  --tone-teal-wash: var(--teal-wash);
+  --tone-moss: var(--moss-0);
+  --tone-moss-wash: var(--moss-wash);
+  --tone-oxide: var(--oxide-0);
+  --tone-oxide-wash: var(--oxide-wash);
+  --tone-plum: var(--plum-0);
+  --tone-plum-wash: var(--plum-wash);
+  --tone-indigo: var(--indigo-0);
+  --tone-indigo-wash: var(--indigo-wash);
+  --tone-sun: var(--sun-0);
+  --tone-sun-wash: var(--sun-wash);
+  --tone-sky: var(--sky-0);
+  --tone-sky-wash: var(--sky-wash);
+  --tone-rose: var(--rose-0);
+  --tone-rose-wash: var(--rose-wash);
+
+  --color-selection: rgb(255 156 115 / 0.24);
+  --color-focus: var(--rust-0);
+  --color-overlay: rgb(4 4 2 / 0.76);
+  --color-grain: rgb(242 235 219 / 0.018);
+
+  --color-code-bg: #0b0a07;
+  --color-code-ink: #ece4d4;
+  --color-code-muted: #90866f;
+  --color-code-line: #262218;
+
+  --page-glow-1: transparent;
+  --page-glow-2: transparent;
+  --page-glow-3: transparent;
+  --page-glow-4: transparent;
+
+  --gradient-spectrum: var(--color-rule);
+  --gradient-accent: var(--color-accent);
+  --gradient-hero: var(--color-bg-raised);
+  --gradient-cool: var(--color-bg-raised);
+  --gradient-warm: var(--color-bg-raised);
+
+  --diagram-ink: var(--ink-0);
+  --diagram-muted: var(--ink-2);
+  --diagram-rule: var(--rule-1);
+  --diagram-fill: var(--paper-1);
+  --diagram-fill-strong: var(--paper-3);
+  --diagram-accent: var(--rust-0);
+  --diagram-accent-wash: var(--rust-wash);
+  --diagram-correct: var(--moss-0);
+  --diagram-warning: var(--ochre-0);
+
+  --shadow-card: 0 1px 0 rgb(255 255 255 / 0.04) inset;
+  --shadow-lift: 0 26px 48px -34px rgb(0 0 0 / 0.9);
+  --shadow-sticker: 4px 4px 0 rgb(0 0 0 / 0.55);
+  --shadow-sticker-soft: 4px 4px 0 rgb(0 0 0 / 0.36);
+  --shadow-overlay: 0 1.5rem 5rem rgb(0 0 0 / 0.65);
+  --shadow-press: inset 0 1px 0 rgb(255 255 255 / 0.08);
+
+  --glass-bg: color-mix(in srgb, var(--color-bg-raised) 62%, transparent);
+  --glass-bg-strong: color-mix(in srgb, var(--color-bg-raised) 82%, transparent);
+  --glass-bg-soft: color-mix(in srgb, var(--color-bg-raised) 38%, transparent);
+  --glass-border: color-mix(in srgb, var(--color-ink) 14%, transparent);
+  --glass-border-strong: color-mix(in srgb, var(--color-ink) 26%, transparent);
+  --glass-highlight: rgb(255 255 255 / 0.08);
+  --glass-shadow:
+    0 1px 0 var(--glass-highlight) inset,
+    0 30px 80px -46px rgb(0 0 0 / 0.82);
+  --glass-shadow-lift:
+    0 1px 0 var(--glass-highlight) inset,
+    0 40px 100px -46px rgb(0 0 0 / 0.9);
+}

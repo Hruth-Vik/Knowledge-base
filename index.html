@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="FOUNDATION is a local-first learning platform for developers who want to understand the machinery underneath their code. Java is the first pack."
+    />
+    <meta name="theme-color" content="#f4f0e6" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>FOUNDATION</title>
+    <script>
+      /*
+       * Resolve the paper/ink theme before first paint. This mirror is not the
+       * source of truth; the persisted notebook remains canonical. It only
+       * prevents a flash when the saved preference is read asynchronously.
+       */
+      (function () {
+        try {
+          var choice = localStorage.getItem('foundation.theme-mirror') || 'system';
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var dark = choice === 'dark' || (choice !== 'light' && prefersDark);
+          document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+        } catch (error) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <p style="max-width: 40rem; margin: 4rem auto; padding: 0 1.5rem; font-family: Georgia, serif; color: #1c1b19;">
+        FOUNDATION is a local-first notebook. It needs JavaScript to read and
+        write the record kept in this browser.
+      </p>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
